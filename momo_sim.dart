@@ -7,11 +7,18 @@ final int t = int.parse(regNo.substring(regNo.length - 2));
 void main() {
   print('Reg no: $regNo | D = $d | T = $t');
 
+  // B2
   String myName = 'Gemimah Bizumuremyi';
   int vowelCount = countVowels(myName);
   print('$myName has $vowelCount vowels');
+
+  // B3
+  print(initials('Gemimah Bizumuremyi'));
+  print(initials('ana uwase'));
+  print(initials(''));
 }
 
+//PART B2 
 // by GB
 int countVowels(String text) {
   String lower = text.toLowerCase();
@@ -23,4 +30,21 @@ int countVowels(String text) {
     }
   }
   return count;
+}
+
+//PART B3 
+// by GB
+String initials(String fullName) {
+  String trimmed = fullName.trim();
+  if (trimmed.isEmpty) return '';
+
+  List<String> words = trimmed.split(RegExp(r'\s+'));
+  String result = '';
+  for (int i = 0; i < words.length; i++) {
+    String word = words[i];
+    if (word.isNotEmpty) {
+      result += word[0].toUpperCase() + '.';
+    }
+  }
+  return result;
 }

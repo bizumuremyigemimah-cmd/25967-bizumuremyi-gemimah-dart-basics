@@ -24,6 +24,21 @@ void main() {
   drawTriangle(0);
   print('--- triangle height -2 ---');
   drawTriangle(-2);
+
+  // D2
+  print('--- MoMo receipts ---');
+  String phone = '0788123456';
+  String masked = maskPhone(phone);
+  int i = 1;
+  int totalFees = 0;
+  while (i <= d + 3) {
+    int amount = i * 4000 + t * 100;
+    int fee = momoFee(amount);
+    print('Receipt $i | $amount RWF | fee $fee RWF | to $masked');
+    totalFees += fee;
+    i++;
+  }
+  print('Total fees: $totalFees RWF');
 }
 
 // PART B2
@@ -40,7 +55,7 @@ int countVowels(String text) {
   return count;
 }
 
-//  PART B3
+// PART B3 
 // by GB
 String initials(String fullName) {
   String trimmed = fullName.trim();
@@ -57,7 +72,7 @@ String initials(String fullName) {
   return result;
 }
 
-// PART C5
+// PART C5 
 // by GB
 void drawTriangle(int height) {
   if (height <= 0) return;
@@ -79,4 +94,28 @@ void drawTriangle(int height) {
     print(spaces + row);
     i++;
   }
+}
+
+// PART D2
+// by GB
+int momoFee(int amount) {
+  if (amount <= 0) return -1;
+  if (amount <= 1000) return 20;
+  if (amount <= 10000) return 100;
+  if (amount <= 150000) return 250;
+  return 1500;
+}
+
+// by GB
+String maskPhone(String phone) {
+  if (phone.length != 10) return 'INVALID';
+  String first = phone.substring(0, 3);
+  String last = phone.substring(phone.length - 2);
+  String stars = '';
+  int i = 0;
+  while (i < phone.length - 5) {
+    stars += '*';
+    i++;
+  }
+  return first + stars + last;
 }
